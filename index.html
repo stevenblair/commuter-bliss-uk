@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel='stylesheet' type='text/css' href='/pebble-slate/dist/css/slate.min.css'>
+  <link rel='stylesheet' type='text/css' href='/css/style.css'>
+</head>
+<body>
+  <div class='item-container'>
+    <h1 class='title'>Commuter Bliss UK<br>Configuration Page</h1>
+  </div>
+
+  <div class="item-container">
+    <div class="item-container-header">Home railway station (three-letter CRS code)</div>
+    <div class="item-container-content">
+      <label class="item">
+        <div class="item-input-wrapper">
+          <input type="text" class="item-input" id="home" name="home" placeholder="e.g. GLC">
+        </div>
+      </label>
+    </div>
+
+    <div class="item-container-header">Work railway station (three-letter CRS code)</div>
+    <div class="item-container-content">
+      <label class="item">
+        <div class="item-input-wrapper">
+          <input type="text" class="item-input" id="work" name="work" placeholder="e.g. EDB">
+        </div>
+      </label>
+    </div>
+  </div>
+
+<!--   <div class="item-container">
+    <div class="item-container-header">Time and date settings</div>
+    <div class="item-container-content">
+      <label class="item">
+        Morning start time
+        <input type="time" class="item-time" name="time-1" value="07:00">
+      </label>
+      <label class="item">
+        Morning end time
+        <input type="time" class="item-time" name="time-2" value="11:00">
+      </label>
+      <label class="item">
+        Afternoon start time
+        <input type="time" class="item-time" name="time-3" value="16:00">
+      </label>
+      <label class="item">
+        Afternoon end time
+        <input type="time" class="item-time" name="time-4" value="01:00">
+      </label>
+      <label class="item">
+        Show train times on weekends
+        <input type="checkbox" class="item-toggle" name="toggle-1">
+      </label>
+    </div>
+  </div> -->
+
+  <!-- <div class="item-container">
+    <div class="item-container-header">Update frequency (minutes)</div>
+    <div class="item-container-content">
+      <label class="item">
+        <input type="range" class="item-slider" name="slider-1" value="5" min="1" max="60">
+        <div class="item-input-wrapper item-slider-text">
+          <input type="text" class="item-input" name="slider-1" value="5" min="1" max="60">
+        </div>
+      </label>
+    </div>
+  </div> -->
+
+  <div class='item-container'>
+    <div class='button-container'>
+      <input id='submitButton' type='button' class='item-button' value='SUBMIT'>
+    </div>
+  </div>
+
+  <script src='/pebble-slate/dist/js/slate.min.js'></script>
+  <script src='/js/main.js'></script>
+</body>
+</html>
