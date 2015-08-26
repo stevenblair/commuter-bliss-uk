@@ -2,18 +2,68 @@
 
 (function() {
   loadOptions();
+  createStationFinders();
   submitHandler();
 })();
+
+function optionsAreValid() {
+  var $home = $('#home');
+  var $work = $('#work');
+
+  if (!($home.val() in station_map)) {
+    console.log('invalid home: ' + $home.val());
+    return false;
+  }
+  if (!($work.val() in station_map)) {
+    console.log('invalid work: ' + $work.val());
+    return false;
+  }
+
+  return true;
+}
 
 function submitHandler() {
   var $submitButton = $('#submitButton');
 
   $submitButton.on('click', function() {
-    console.log('Submit');
+    console.log('submit');
 
-    var return_to = getQueryParam('return_to', 'pebblejs://close#');
-    document.location = return_to + encodeURIComponent(JSON.stringify(getAndStoreConfigData()));
+    if (optionsAreValid()) {
+      var return_to = getQueryParam('return_to', 'pebblejs://close#');
+      document.location = return_to + encodeURIComponent(JSON.stringify(getAndStoreConfigData()));
+    }
+    else {
+      console.log('invalid station code(s)');
+    }
   });
+
+  var $cancelButton = $('#cancelButton');
+  $cancelButton.on('click', function() {
+    console.log('cancel');
+
+    document.location = 'pebblejs://close';
+  });
+}
+
+function stationFinder(inputName, footerName) {
+  var $input = $(inputName);
+  var $footer = $(footerName);
+
+  $input.on('keyup', function(e) {
+    var value = e.target.value;
+    if (value in station_map) {
+      $footer.text(station_map[value]);
+    }
+    else {
+      $footer.text('');
+    }
+  });
+  $input.trigger('keyup');
+}
+
+function createStationFinders() {
+  stationFinder('#home', '#home-footer');
+  stationFinder('#work', '#work-footer');
 }
 
 function loadOptions() {

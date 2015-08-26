@@ -16,19 +16,21 @@
     <div class="item-container-content">
       <label class="item">
         <div class="item-input-wrapper">
-          <input type="text" class="item-input" id="home" name="home" placeholder="e.g. GLC">
+          <input type="text" class="item-input" id="home" name="home" placeholder="e.g. GLC" style="text-transform:uppercase">
         </div>
       </label>
     </div>
+    <div class="item-container-footer" id="home-footer"></div>
 
     <div class="item-container-header">Work railway station (three-letter CRS code)</div>
     <div class="item-container-content">
       <label class="item">
         <div class="item-input-wrapper">
-          <input type="text" class="item-input" id="work" name="work" placeholder="e.g. EDB">
+          <input type="text" class="item-input" id="work" name="work" placeholder="e.g. EDB" style="text-transform:uppercase">
         </div>
       </label>
     </div>
+    <div class="item-container-footer" id="work-footer"></div>
   </div>
 
 <!--   <div class="item-container">
@@ -74,8 +76,15 @@
       <input id='submitButton' type='button' class='item-button' value='SUBMIT'>
     </div>
   </div>
+  
+  <div class='item-container'>
+    <div class='button-container'>
+      <input id='cancelButton' type='button' class='item-button' value='CANCEL'>
+    </div>
+  </div>
 
   <script src='pebble-slate/dist/js/slate.min.js'></script>
+  <script src='js/stations.js'></script>
   <script src='js/main.js'></script>
 </body>
 </html>
