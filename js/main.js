@@ -100,27 +100,41 @@ function createStationFinders() {
   stationFinder('#work', '#work-footer');
 }
 
+function parseLocalStorage(type) {
+   return typeof type == 'string' ? JSON.parse(type) : type;
+}
+
 function loadOptions() {
   var $home = $('#home');
   var $work = $('#work');
+  var $useLocation = $('#use-location');
 
-  if (localStorage.home) {
+  if (localStorage.getItem('home') !== null) {
     $home.val(localStorage.home);
+  }
+  if (localStorage.getItem('work') !== null) {
     $work.val(localStorage.work);
+  }
+  if (localStorage.getItem('useLocation') !== null) {
+    console.log('localStorage.useLocation: ' + localStorage.useLocation);
+    $useLocation.prop("checked", parseLocalStorage(localStorage.useLocation));
   }
 }
 
 function getAndStoreConfigData() {
   var $home = $('#home');
   var $work = $('#work');
+  var $useLocation = $('#use-location');
 
   var options = {
     home: $home.val().toUpperCase(),
-    work: $work.val().toUpperCase()
+    work: $work.val().toUpperCase(),
+    useLocation: $useLocation.prop("checked")
   };
 
   localStorage.home = options.home;
   localStorage.work = options.work;
+  localStorage.useLocation = options.useLocation;
 
   // console.log('Got options: ' + JSON.stringify(options));
   return options;
