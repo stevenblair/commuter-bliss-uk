@@ -26,7 +26,7 @@ The watchface also shows the time and date in a clear and sensible way for UK us
 * Your present location can be used to dynamically determine possible routes home, based the your nearest railway station. This mode can be disabled. In any case, your location is not shared outside of the phone app.
 * If location is disabled or unavailable, your normal home-to-work journeys will be shown in the morning; work-to-home routes will be shown after midday.
 * By default, train routes are refreshed every 5 minutes. At the time the next train is due to depart (i.e. has 0 minutes left), an update is requested. If a train is delayed (shown by e.g. "-2 min"), an update is requested every minute.
-* Clearly, it's important that your phone's clock is fairly close to Network Rail's clock!
+* Clearly, it's important that your phone's clock is reasonably well-synchronised with Network Rail's clock!
 
 ## Acknowledgments
 
@@ -40,6 +40,7 @@ The watchface also shows the time and date in a clear and sensible way for UK us
 * Further configuration options:
   - ability to enable/disable train info on specific days/weekend
   - daily start and end times
+  - better station searching
 * Add service query to determine journey duration and number of stops
 * Query Huxley /delays URL?
 * Only need to show departure times for immediate next train. This would free up space on UI for e.g. journey duration.
