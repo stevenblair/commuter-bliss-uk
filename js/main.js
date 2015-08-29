@@ -83,14 +83,52 @@ function stationFinder(inputName, footerName) {
 
   $input.on('keyup', function(e) {
     var value = e.target.value.toUpperCase();
-    if (value in station_map) {
-      $footer.text(station_map[value]);
+
+    if (value !== '') {
+      if (value in station_map) {
+        $footer.text('\u2714 ' + station_map[value] + ' (' + value + ')');
+      }
+      else {
+        var possibles = [];
+
+        for (var v in station_map) {
+          // search by CRS code or station name substring
+          if (v.toUpperCase().indexOf(value) > -1 || station_map[v].toUpperCase().indexOf(value) > -1) {
+            possibles.push({'CRS': v, 'name': station_map[v]});
+          }
+
+          // limit number of matches
+          if (possibles.length == 5) {
+            break;
+          }
+        }
+
+        var list = '';
+        for (var i = 0; i < possibles.length; i++) {
+          list += possibles[i].name + ' (' + possibles[i].CRS + ')';
+          if (i < possibles.length - 1) {
+            list += ', ';
+          }
+        }
+
+        if (possibles.length == 1) {
+          list = '\u2714 ' + list;
+          e.target.value = possibles[0].CRS;
+        }
+
+        if (possibles.length == 1 || value.length >= 2) {
+          $footer.text(list);
+        }
+        else {
+          $footer.text('');
+        }
+      }
+
+      checkRouteFeasibility();
     }
     else {
       $footer.text('');
     }
-
-    checkRouteFeasibility();
   });
   $input.trigger('keyup');
 }
