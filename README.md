@@ -36,8 +36,8 @@ The watchface also shows the time and date in a clear and sensible way for UK us
 
 ## Acknowledgments
 
-* [James Singleton](https:unop.uk/) for producing the [Huxley](https:github.com/jpsingleton/Huxley) project, which translates National Rail Enquiries' Darwin web service into a convenient JSON REST API.
-* [Deon Botha](http://www.dbotha.com/) for the handy [JavaScript k-d tree implementation](https:github.com/dbotha/Javascript-k-d-tree).
+* [James Singleton](https://unop.uk/) for producing the [Huxley](https://github.com/jpsingleton/Huxley) project, which translates National Rail Enquiries' Darwin web service into a convenient JSON REST API.
+* [Deon Botha](http://www.dbotha.com/) for the handy [JavaScript k-d tree implementation](https://github.com/dbotha/Javascript-k-d-tree).
 * [AppHarbor](https://appharbor.com/) for hosting the dedicated Huxley instance.
 * GitHub for hosting the [configuration page](http://stevenblair.github.io/commuter-bliss-uk/).
 
