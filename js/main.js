@@ -114,7 +114,7 @@ function stationFinder(inputName, footerName) {
         // autocomplete if only one match, unless key was backspace or delete
         var keyCode = e.keyCode;
         if (possibles.length == 1 && keyCode != 8 && keyCode != 46) {
-          list = '\u2714 ' + list;
+          list = '\u2714 ' + list + ', keyCode: ' + keyCode;
           e.target.value = possibles[0].CRS;
         }
 
