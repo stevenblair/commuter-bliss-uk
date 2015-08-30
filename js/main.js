@@ -84,6 +84,27 @@ function stationFinder(inputName, footerName) {
   $input.on('keyup', function(e) {
     var value = e.target.value.toUpperCase();
 
+
+
+
+    switch(keyCode) {
+      case 8:
+        console.log("backspace");
+        break; 
+      case 46:
+        console.log("delete");
+        break;
+      default:
+        console.log("other key");
+        break;
+    }
+
+
+
+
+
+
+
     if (value !== '') {
       if (value in station_map) {
         $footer.text('\u2714 ' + station_map[value] + ' (' + value + ')');
@@ -111,7 +132,9 @@ function stationFinder(inputName, footerName) {
           }
         }
 
-        if (possibles.length == 1) {
+        // autocomplete if only one match, unless key was backspace or delete
+        var keyCode = e.keyCode;
+        if (possibles.length == 1 && keyCode != 8 && keyCode != 46) {
           list = '\u2714 ' + list;
           e.target.value = possibles[0].CRS;
         }
@@ -154,7 +177,7 @@ function loadOptions() {
     $work.val(localStorage.work);
   }
   if (localStorage.getItem('useLocation') !== null) {
-    console.log('localStorage.useLocation: ' + localStorage.useLocation);
+    // console.log('localStorage.useLocation: ' + localStorage.useLocation);
     $useLocation.prop("checked", parseLocalStorage(localStorage.useLocation));
   }
 }
