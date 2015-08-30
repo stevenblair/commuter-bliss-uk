@@ -33,6 +33,7 @@ The watchface also shows the time and date in a clear and sensible way for UK us
 * If location is disabled or unavailable, your normal home-to-work journeys will be shown in the morning; work-to-home routes will be shown after midday.
 * By default, train routes are refreshed every 5 minutes. At the time the next train is due to depart (i.e. has 0 minutes left), an update is requested. If a train is delayed (shown by e.g. "-2 min"), an update is requested every minute.
 * Clearly, it's important that your phone's clock is reasonably well-synchronised with Network Rail's clock!
+* Vibrates on loss of Bluetooth connection, and turns the watchface background blue until the connection is restored.
 
 ## Acknowledgments
 
