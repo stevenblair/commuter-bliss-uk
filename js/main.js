@@ -84,27 +84,6 @@ function stationFinder(inputName, footerName) {
   $input.on('keyup', function(e) {
     var value = e.target.value.toUpperCase();
 
-
-
-
-    switch(keyCode) {
-      case 8:
-        console.log("backspace");
-        break; 
-      case 46:
-        console.log("delete");
-        break;
-      default:
-        console.log("other key");
-        break;
-    }
-
-
-
-
-
-
-
     if (value !== '') {
       if (value in station_map) {
         $footer.text('\u2714 ' + station_map[value] + ' (' + value + ')');
@@ -212,23 +191,3 @@ function getQueryParam(variable, defaultValue) {
   }
   return defaultValue || false;
 }
-
-
-// check if a new cache is available on page load
-// from http://stackoverflow.com/a/13106972/57743
-window.addEventListener('load', function(e) {
-
-  window.applicationCache.addEventListener('updateready', function(e) {
-    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
-      // Browser downloaded a new app cache.
-      // Swap it in and reload the page to get the new hotness.
-      window.applicationCache.swapCache();
-      if (confirm('A new version of this site is available. Load it?')) {
-        window.location.reload();
-      }
-    } else {
-      // Manifest didn't changed. Nothing new to server.
-    }
-  }, false);
-
-}, false);
