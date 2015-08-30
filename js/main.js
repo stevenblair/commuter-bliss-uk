@@ -81,7 +81,7 @@ function stationFinder(inputName, footerName) {
   var $input = $(inputName);
   var $footer = $(footerName);
 
-  $input.on('keyup', function(e) {
+  $input.on('input', function(e) {
     var value = e.target.value.toUpperCase();
 
     if (value !== '') {
@@ -112,14 +112,13 @@ function stationFinder(inputName, footerName) {
         }
 
         // autocomplete if only one match, unless key was backspace or delete
-        var keyCode = e.keyCode;
-        if (possibles.length == 1 && keyCode != 8 && keyCode != 46) {
+        if (possibles.length == 1 && value.length > 3) {
           list = '\u2714 ' + list;
           e.target.value = possibles[0].CRS;
         }
 
         if (possibles.length == 1 || value.length >= 2) {
-          $footer.text(list + ', keyCode: ' + keyCode);
+          $footer.text(list);
         }
         else {
           $footer.text('');
