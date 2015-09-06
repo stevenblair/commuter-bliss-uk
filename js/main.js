@@ -2,6 +2,7 @@
 
 (function() {
   loadOptions();
+  createCustomisedDayEvents();
   createStationFinders();
   submitHandler();
 })();
@@ -36,17 +37,31 @@ function checkRouteFeasibility() {
       dataType: 'json',
       timeout: 1000,
       success: function(data) {
-        // console.log(data);
-        if (data.trainServices && data.trainServices.length >= 1) {
-          // console.log('valid route');
-          $routeValidity.text('Direct services are available');
-          $routeValidityContainer.show();
-        }
-        else {
-          // console.log('invalid route');
-          $routeValidity.text('No direct services are available (at this time)');
-          $routeValidityContainer.show();
-        }
+        $.ajax({
+          type: 'GET',
+          url: 'http://commuter-bliss-uk.apphb.com/departures/' + workVal + '/to/' + homeVal + '/1', 
+          dataType: 'json',
+          timeout: 1000,
+          success: function(data_return) {
+            // console.log(data);
+            // console.log(data_return);
+            var outward_possible = data.trainServices !== null && data.trainServices.length >= 1;
+            var return_possible = data_return.trainServices !== null && data_return.trainServices.length >= 1;
+            // console.log(outward_possible);
+            // console.log(return_possible);
+
+            if (outward_possible || return_possible) {
+              // console.log('valid route');
+              $routeValidity.text('Direct services are available');
+              $routeValidityContainer.show();
+            }
+            else {
+              // console.log('invalid route (now)');
+              $routeValidity.text('No direct services are available (at this time)');
+              $routeValidityContainer.show();
+            }
+          }
+        });
       }
     });
   }
@@ -147,6 +162,14 @@ function loadOptions() {
   var $home = $('#home');
   var $work = $('#work');
   var $useLocation = $('#use-location');
+  var $customisedDays = $('#customise-active-days');
+  var $use_monday = $('#use_monday');
+  var $use_tuesday = $('#use_tuesday');
+  var $use_wednesday = $('#use_wednesday');
+  var $use_thursday = $('#use_thursday');
+  var $use_friday = $('#use_friday');
+  var $use_saturday = $('#use_saturday');
+  var $use_sunday = $('#use_sunday');
 
   if (localStorage.getItem('home') !== null) {
     $home.val(localStorage.home);
@@ -154,9 +177,38 @@ function loadOptions() {
   if (localStorage.getItem('work') !== null) {
     $work.val(localStorage.work);
   }
+
   if (localStorage.getItem('useLocation') !== null) {
     // console.log('localStorage.useLocation: ' + localStorage.useLocation);
     $useLocation.prop("checked", parseLocalStorage(localStorage.useLocation));
+  }
+
+  if (localStorage.getItem('customisedDays') !== null) {
+    // console.log('localStorage.customisedDays: ' + localStorage.customisedDays);
+    $customisedDays.prop("checked", parseLocalStorage(localStorage.customisedDays));
+
+    setCustomisedDayVisibility();
+  }
+  if (localStorage.getItem('use_monday') !== null) {
+    $use_monday.prop("checked", parseLocalStorage(localStorage.use_monday));
+  }
+  if (localStorage.getItem('use_tuesday') !== null) {
+    $use_tuesday.prop("checked", parseLocalStorage(localStorage.use_tuesday));
+  }
+  if (localStorage.getItem('use_wednesday') !== null) {
+    $use_wednesday.prop("checked", parseLocalStorage(localStorage.use_wednesday));
+  }
+  if (localStorage.getItem('use_thursday') !== null) {
+    $use_thursday.prop("checked", parseLocalStorage(localStorage.use_thursday));
+  }
+  if (localStorage.getItem('use_friday') !== null) {
+    $use_friday.prop("checked", parseLocalStorage(localStorage.use_friday));
+  }
+  if (localStorage.getItem('use_saturday') !== null) {
+    $use_saturday.prop("checked", parseLocalStorage(localStorage.use_saturday));
+  }
+  if (localStorage.getItem('use_sunday') !== null) {
+    $use_sunday.prop("checked", parseLocalStorage(localStorage.use_sunday));
   }
 }
 
@@ -164,16 +216,40 @@ function getAndStoreConfigData() {
   var $home = $('#home');
   var $work = $('#work');
   var $useLocation = $('#use-location');
+  var $customisedDays = $('#customise-active-days');
+  var $use_monday = $('#use_monday');
+  var $use_tuesday = $('#use_tuesday');
+  var $use_wednesday = $('#use_wednesday');
+  var $use_thursday = $('#use_thursday');
+  var $use_friday = $('#use_friday');
+  var $use_saturday = $('#use_saturday');
+  var $use_sunday = $('#use_sunday');
 
   var options = {
     home: $home.val().toUpperCase(),
     work: $work.val().toUpperCase(),
-    useLocation: $useLocation.prop("checked")
+    useLocation: $useLocation.prop("checked"),
+    customisedDays: $customisedDays.prop("checked"),
+    use_monday: $use_monday.prop("checked"),
+    use_tuesday: $use_tuesday.prop("checked"),
+    use_wednesday: $use_wednesday.prop("checked"),
+    use_thursday: $use_thursday.prop("checked"),
+    use_friday: $use_friday.prop("checked"),
+    use_saturday: $use_saturday.prop("checked"),
+    use_sunday: $use_sunday.prop("checked")
   };
 
   localStorage.home = options.home;
   localStorage.work = options.work;
   localStorage.useLocation = options.useLocation;
+  localStorage.customisedDays = options.customisedDays;
+  localStorage.use_monday = options.use_monday;
+  localStorage.use_tuesday = options.use_tuesday;
+  localStorage.use_wednesday = options.use_wednesday;
+  localStorage.use_thursday = options.use_thursday;
+  localStorage.use_friday = options.use_friday;
+  localStorage.use_saturday = options.use_saturday;
+  localStorage.use_sunday = options.use_sunday;
 
   // console.log('Got options: ' + JSON.stringify(options));
   return options;
@@ -189,4 +265,27 @@ function getQueryParam(variable, defaultValue) {
     }
   }
   return defaultValue || false;
+}
+
+function setCustomisedDayVisibility() {
+  var $customisedDays = $('#customise-active-days');
+  var $customisedDaysFooter = $('#customise-active-days-footer');
+  var $days = $('#days');
+
+  if ($customisedDays.attr('checked')) {
+    $days.show();
+    $customisedDaysFooter.text('Active on the following days:');
+  }
+  else {
+    $days.hide();
+    $customisedDaysFooter.text('Active every day');
+  }
+}
+
+function createCustomisedDayEvents() {
+  var $customisedDays = $('#customise-active-days');
+
+  $customisedDays.on('click', function() {
+    setCustomisedDayVisibility();
+  });
 }
