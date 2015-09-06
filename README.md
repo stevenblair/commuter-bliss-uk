@@ -22,7 +22,7 @@ Alternatively, if location is disabled or unavailable, your journeys are still p
 
 Updates are requested periodically, but can be requested at any time by "tapping" (shaking) the watch. When the next train is due to arrive or is slightly late, updates are triggered more frequently. Train times are only fetched during likely commuting times.
 
-Where specified in the data, the estimated time of departure (ETD) is displayed. Otherwise, the scheduled time of departure (STD) is shown.
+Where specified in the data, the estimated time of departure (ETD) is displayed. Otherwise, the scheduled time of departure (STD) is shown. This means that the watchface can adapt to real-time changes to the schedule or cancellations.
 
 The watchface also shows the time and date in a clear and sensible way for UK users.
 
@@ -32,6 +32,7 @@ The watchface also shows the time and date in a clear and sensible way for UK us
 * Your present location can be used to dynamically determine possible routes home, based the your nearest railway station. This mode can be disabled. In any case, your location is not shared outside of the phone app.
 * If location is disabled or unavailable, your normal home-to-work journeys will be shown in the morning; work-to-home routes will be shown after midday.
 * By default, train routes are refreshed every 5 minutes. At the time the next train is due to depart (i.e. has 0 minutes left), an update is requested. If a train is delayed (shown by e.g. "-2 min"), an update is requested every minute.
+* The platform number, if available, is shown in brackets on the bottom line.
 * Clearly, it's important that your phone's clock is reasonably well-synchronised with Network Rail's clock!
 * On loss of Bluetooth connection, the watch vibrates and the background turns blue (on Pebble Time) until the connection is restored.
 
