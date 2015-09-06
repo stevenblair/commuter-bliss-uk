@@ -33,13 +33,14 @@ The watchface also shows the time and date in a clear and sensible way for UK us
 * If location is disabled or unavailable, your normal home-to-work journeys will be shown in the morning; work-to-home routes will be shown after midday.
 * By default, train routes are refreshed every 5 minutes. At the time the next train is due to depart (i.e. has 0 minutes left), an update is requested. If a train is delayed (shown by e.g. "-2 min"), an update is requested every minute.
 * Clearly, it's important that your phone's clock is reasonably well-synchronised with Network Rail's clock!
-* Vibrates on loss of Bluetooth connection, and turns the watchface background blue until the connection is restored.
+* On loss of Bluetooth connection, the watch vibrates and the background turns blue (on Pebble Time) until the connection is restored.
 
 ## Acknowledgments
 
 * [James Singleton](https://unop.uk/) for producing the [Huxley](https://github.com/jpsingleton/Huxley) project, which translates National Rail Enquiries' Darwin web service into a convenient JSON REST API.
 * [Deon Botha](http://www.dbotha.com/) for the handy [JavaScript k-d tree implementation](https://github.com/dbotha/Javascript-k-d-tree).
 * [AppHarbor](https://appharbor.com/) for hosting the dedicated Huxley instance.
+* [Slate](https://github.com/pebble/slate) for the configuration page template and [helpful guide](https://www.youtube.com/watch?v=TtP7z6wceqI).
 * GitHub for hosting the [configuration page](http://stevenblair.github.io/commuter-bliss-uk/).
 
 ## Planned features
