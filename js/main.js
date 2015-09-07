@@ -35,7 +35,7 @@ function optionsAreValid() {
   var afternoonEnd = document.getElementById('afternoon-end');
   var afternoon_start_val = parseInt(afternoonStart.options[afternoonStart.selectedIndex].value);
   var afternoon_end_val = parseInt(afternoonEnd.options[afternoonEnd.selectedIndex].value);
-  
+
   if (afternoon_end_val < afternoon_start_val && afternoon_end_val != 0 && afternoon_end_val != 1) {
     // console.log('invalid afternoon times: ' + afternoon_start_val + ', ' + afternoon_end_val);
     return false;
@@ -355,15 +355,15 @@ function setCustomisedDayVisibility() {
 function setCustomisedTimesVisibility() {
   var $customisedTimes = $('#customise-active-times');
   var $times = $('#times');
-  // var $customisedTimesFooter = $('#customise-active-times-footer');
+  var $customisedTimesFooter = $('#customise-active-times-footer');
 
   if ($customisedTimes.attr('checked')) {
     $times.show();
-    // $customisedTimesFooter.text('Active on the following times:');
+    $customisedTimesFooter.text('Customise two periods during the day when the watch may request train data. Keep the range narrow to minimise the impact on watch (and phone) battery life.');
   }
   else {
     $times.hide();
-    // $customisedTimesFooter.text('Active every day');
+    $customisedTimesFooter.text('Default schedule active: 7-11am and 3pm-1am.');
   }
 }
 
