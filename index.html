@@ -104,6 +104,98 @@
     </div>
   </div>
 
+  <div class="item-container">
+    <div class="item-container-content">
+      <label class="item">
+        Customise active times
+        <input type="checkbox" class="item-toggle" name="customise-active-times" id="customise-active-times">
+      </label>
+    </div>
+    <div id="times" style="display:none;">
+      <div class="item-container-footer" id="customise-active-times-footer">Customise two periods during the day when the watch may request train data. Keep the range narrow to minimise the impact on watch (and phone) battery life.</div>
+      <div class="item-container-content">
+        <!-- <label class="item">
+          Morning start
+          <input type="time" class="item-time" name="time-1" value="18:35">
+          <input type="text" class="item-input" name="input-2" placeholder="Input field">
+        </label> -->
+
+        <label class="item">
+          Outgoing start
+          <select name="morning-start" id="morning-start" class="item-select">
+            <option class="item-select-option" value="1">1 am</option>
+            <option class="item-select-option" value="2">2 am</option>
+            <option class="item-select-option" value="3">3 am</option>
+            <option class="item-select-option" value="4">4 am</option>
+            <option class="item-select-option" value="5">5 am</option>
+            <option class="item-select-option" value="6">6 am</option>
+            <option class="item-select-option" value="7" selected="selected">7 am</option>
+            <option class="item-select-option" value="8">8 am</option>
+            <option class="item-select-option" value="9">9 am</option>
+            <option class="item-select-option" value="10">10 am</option>
+            <option class="item-select-option" value="11">11 am</option>
+            <option class="item-select-option" value="12">12 pm</option>
+          </select>
+        </label>
+
+        <label class="item">
+          Outgoing end
+          <select name="morning-end" id="morning-end" class="item-select">
+            <option class="item-select-option" value="5">5 am</option>
+            <option class="item-select-option" value="6">6 am</option>
+            <option class="item-select-option" value="7">7 am</option>
+            <option class="item-select-option" value="8">8 am</option>
+            <option class="item-select-option" value="9">9 am</option>
+            <option class="item-select-option" value="10">10 am</option>
+            <option class="item-select-option" value="11" selected="selected">11 am</option>
+            <option class="item-select-option" value="12">12 pm</option>
+            <option class="item-select-option" value="13">1 pm</option>
+            <option class="item-select-option" value="14">2 pm</option>
+            <option class="item-select-option" value="15">3 pm</option>
+            <option class="item-select-option" value="16">4 pm</option>
+          </select>
+        </label>
+
+        <label class="item">
+          Return start
+          <select name="afternoon-start" id="afternoon-start" class="item-select">
+            <option class="item-select-option" value="11">11 am</option>
+            <option class="item-select-option" value="12">12 pm</option>
+            <option class="item-select-option" value="13">1 pm</option>
+            <option class="item-select-option" value="14">2 pm</option>
+            <option class="item-select-option" value="15" selected="selected">3 pm</option>
+            <option class="item-select-option" value="16">4 pm</option>
+            <option class="item-select-option" value="17">5 pm</option>
+            <option class="item-select-option" value="18">6 pm</option>
+            <option class="item-select-option" value="19">7 pm</option>
+            <option class="item-select-option" value="20">8 pm</option>
+            <option class="item-select-option" value="21">9 pm</option>
+            <option class="item-select-option" value="22">10 pm</option>
+          </select>
+        </label>
+
+        <label class="item">
+          Return end
+          <select name="afternoon-end" id="afternoon-end" class="item-select">
+            <option class="item-select-option" value="13">1 pm</option>
+            <option class="item-select-option" value="14">2 pm</option>
+            <option class="item-select-option" value="15">3 pm</option>
+            <option class="item-select-option" value="16">4 pm</option>
+            <option class="item-select-option" value="17">5 pm</option>
+            <option class="item-select-option" value="18">6 pm</option>
+            <option class="item-select-option" value="19">7 pm</option>
+            <option class="item-select-option" value="20">8 pm</option>
+            <option class="item-select-option" value="21">9 pm</option>
+            <option class="item-select-option" value="22">10 pm</option>
+            <option class="item-select-option" value="23">11 pm</option>
+            <option class="item-select-option" value="0">12 am</option>
+            <option class="item-select-option" value="1" selected="selected">1 am</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </div>
+
 <!--   <div class="item-container">
   </div> -->
 

@@ -3,6 +3,7 @@
 (function() {
   loadOptions();
   createCustomisedDayEvents();
+  createCustomisedTimesEvents();
   createStationFinders();
   submitHandler();
 })();
@@ -17,6 +18,26 @@ function optionsAreValid() {
   }
   if (!(workVal in station_map)) {
     // console.log('invalid work: ' + workVal);
+    return false;
+  }
+
+  var morningStart = document.getElementById('morning-start');
+  var morningEnd = document.getElementById('morning-end');
+  var morning_start_val = parseInt(morningStart.options[morningStart.selectedIndex].value);
+  var morning_end_val = parseInt(morningEnd.options[morningEnd.selectedIndex].value);
+
+  if (morning_end_val < morning_start_val) {
+    // console.log('invalid morning times: ' + morning_start_val + ', ' + morning_end_val);
+    return false;
+  }
+
+  var afternoonStart = document.getElementById('afternoon-start');
+  var afternoonEnd = document.getElementById('afternoon-end');
+  var afternoon_start_val = parseInt(afternoonStart.options[afternoonStart.selectedIndex].value);
+  var afternoon_end_val = parseInt(afternoonEnd.options[afternoonEnd.selectedIndex].value);
+  
+  if (afternoon_end_val < afternoon_start_val && afternoon_end_val != 0 && afternoon_end_val != 1) {
+    // console.log('invalid afternoon times: ' + afternoon_start_val + ', ' + afternoon_end_val);
     return false;
   }
 
@@ -170,6 +191,7 @@ function loadOptions() {
   var $use_friday = $('#use_friday');
   var $use_saturday = $('#use_saturday');
   var $use_sunday = $('#use_sunday');
+  var $customisedTimes = $('#customise-active-times');
 
   if (localStorage.getItem('home') !== null) {
     $home.val(localStorage.home);
@@ -210,6 +232,39 @@ function loadOptions() {
   if (localStorage.getItem('use_sunday') !== null) {
     $use_sunday.prop("checked", parseLocalStorage(localStorage.use_sunday));
   }
+
+  if (localStorage.getItem('customisedTimes') !== null) {
+    // console.log('localStorage.customisedTimes: ' + localStorage.customisedTimes);
+    $customisedTimes.prop("checked", parseLocalStorage(localStorage.customisedTimes));
+
+    setCustomisedTimesVisibility();
+  }
+  if (localStorage.getItem('morning_start') !== null) {
+    // console.log('localStorage.morningStart: ' + localStorage.morningStart);
+    setSelectValue('morning-start', localStorage.morning_start);
+  }
+  if (localStorage.getItem('morning_end') !== null) {
+    // console.log('localStorage.morningStart: ' + localStorage.morningStart);
+    setSelectValue('morning-end', localStorage.morning_end);
+  }
+  if (localStorage.getItem('afternoon_start') !== null) {
+    // console.log('localStorage.morningStart: ' + localStorage.morningStart);
+    setSelectValue('afternoon-start', localStorage.afternoon_start);
+  }
+  if (localStorage.getItem('afternoon_end') !== null) {
+    // console.log('localStorage.morningStart: ' + localStorage.morningStart);
+    setSelectValue('afternoon-end', localStorage.afternoon_end);
+  }
+}
+
+function setSelectValue(name, value) {
+  // var select = document.getElementById(name);
+  // for (var i = 0; i < select.options.length; i++) {
+  //   if (select.options[i].value == value) {
+  //     select.options[i].selected = true;
+  //   }
+  // }
+  document.getElementById(name).value = value;
 }
 
 function getAndStoreConfigData() {
@@ -224,6 +279,11 @@ function getAndStoreConfigData() {
   var $use_friday = $('#use_friday');
   var $use_saturday = $('#use_saturday');
   var $use_sunday = $('#use_sunday');
+  var $customisedTimes = $('#customise-active-times');
+  var morningStart = document.getElementById('morning-start');
+  var morningEnd = document.getElementById('morning-end');
+  var afternoonStart = document.getElementById('afternoon-start');
+  var afternoonEnd = document.getElementById('afternoon-end');
 
   var options = {
     home: $home.val().toUpperCase(),
@@ -236,7 +296,12 @@ function getAndStoreConfigData() {
     use_thursday: $use_thursday.prop("checked"),
     use_friday: $use_friday.prop("checked"),
     use_saturday: $use_saturday.prop("checked"),
-    use_sunday: $use_sunday.prop("checked")
+    use_sunday: $use_sunday.prop("checked"),
+    customisedTimes: $customisedTimes.prop("checked"),
+    morning_start: parseInt(morningStart.options[morningStart.selectedIndex].value),
+    morning_end: parseInt(morningEnd.options[morningEnd.selectedIndex].value),
+    afternoon_start: parseInt(afternoonStart.options[afternoonStart.selectedIndex].value),
+    afternoon_end: parseInt(afternoonEnd.options[afternoonEnd.selectedIndex].value)
   };
 
   localStorage.home = options.home;
@@ -250,6 +315,11 @@ function getAndStoreConfigData() {
   localStorage.use_friday = options.use_friday;
   localStorage.use_saturday = options.use_saturday;
   localStorage.use_sunday = options.use_sunday;
+  localStorage.customisedTimes = options.customisedTimes;
+  localStorage.morning_start = options.morning_start;
+  localStorage.morning_end = options.morning_end;
+  localStorage.afternoon_start = options.afternoon_start;
+  localStorage.afternoon_end = options.afternoon_end;
 
   // console.log('Got options: ' + JSON.stringify(options));
   return options;
@@ -269,8 +339,8 @@ function getQueryParam(variable, defaultValue) {
 
 function setCustomisedDayVisibility() {
   var $customisedDays = $('#customise-active-days');
-  var $customisedDaysFooter = $('#customise-active-days-footer');
   var $days = $('#days');
+  var $customisedDaysFooter = $('#customise-active-days-footer');
 
   if ($customisedDays.attr('checked')) {
     $days.show();
@@ -282,10 +352,33 @@ function setCustomisedDayVisibility() {
   }
 }
 
+function setCustomisedTimesVisibility() {
+  var $customisedTimes = $('#customise-active-times');
+  var $times = $('#times');
+  // var $customisedTimesFooter = $('#customise-active-times-footer');
+
+  if ($customisedTimes.attr('checked')) {
+    $times.show();
+    // $customisedTimesFooter.text('Active on the following times:');
+  }
+  else {
+    $times.hide();
+    // $customisedTimesFooter.text('Active every day');
+  }
+}
+
 function createCustomisedDayEvents() {
   var $customisedDays = $('#customise-active-days');
 
   $customisedDays.on('click', function() {
     setCustomisedDayVisibility();
+  });
+}
+
+function createCustomisedTimesEvents() {
+  var $customisedTimes = $('#customise-active-times');
+
+  $customisedTimes.on('click', function() {
+    setCustomisedTimesVisibility();
   });
 }
