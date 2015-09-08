@@ -6,6 +6,8 @@
   createCustomisedTimesEvents();
   createStationFinders();
   submitHandler();
+
+  // checkRouteFeasibility();
 })();
 
 function optionsAreValid() {
@@ -113,7 +115,7 @@ function submitHandler() {
   });
 }
 
-function stationFinder(inputName, footerName) {
+function stationFinder(inputName, footerName, checkRoute) {
   var $input = $(inputName);
   var $footer = $(footerName);
 
@@ -161,18 +163,21 @@ function stationFinder(inputName, footerName) {
         }
       }
 
-      checkRouteFeasibility();
+      if (checkRoute) {
+        checkRouteFeasibility();
+      }
     }
     else {
       $footer.text('');
     }
   });
-  $input.trigger('keyup');
+
+  $input.trigger('input');
 }
 
 function createStationFinders() {
-  stationFinder('#home', '#home-footer');
-  stationFinder('#work', '#work-footer');
+  stationFinder('#home', '#home-footer', false);
+  stationFinder('#work', '#work-footer', true);
 }
 
 function parseLocalStorage(type) {
