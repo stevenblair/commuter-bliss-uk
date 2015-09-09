@@ -28,10 +28,10 @@ The watchface also shows the time and date in a clear and sensible way for UK us
 
 ## Details
 
-* By default, train times are only shown on the watchface between 6am-11am and 3pm-1am.
-* Your present location can be used to dynamically determine possible routes home, based the your nearest railway station. This mode can be disabled. In any case, your location is not shared outside of the phone app.
+* By default, train times are only shown on the watchface between 7am-11am and 3pm-1am, every day. This schedule can be customised from the configuration page.
+* Your present location can be used to dynamically determine possible routes home, based the your nearest railway station. This mode can be disabled. In any case, your exact location is not shared outside of the phone app.
 * If location is disabled or unavailable, your normal home-to-work journeys will be shown in the morning; work-to-home routes will be shown after midday.
-* By default, train routes are refreshed every 5 minutes. At the time the next train is due to depart (i.e. has 0 minutes left), an update is requested. If a train is delayed (shown by e.g. "-2 min"), an update is requested every minute.
+* By default, train routes are refreshed every 15 minutes. At the time the next train is due to depart (i.e. has 0 minutes left), an update is requested. If a train is delayed (shown by e.g. "-2 min"), an update is requested every minute.
 * The platform number, if available, is shown in brackets on the bottom line.
 * Clearly, it's important that your phone's clock is reasonably well-synchronised with Network Rail's clock!
 * On loss of Bluetooth connection, the watch vibrates and the background turns blue (on Pebble Time) until the connection is restored.
