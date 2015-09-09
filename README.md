@@ -46,9 +46,6 @@ The watchface also shows the time and date in a clear and sensible way for UK us
 
 ## Planned features
 
-* Further configuration options:
-  - ability to enable/disable train info on specific days/weekend
-  - daily start and end times
 * Add service query to determine journey duration and number of stops
 * Query Huxley /delays URL?
 * Only need to show departure times for immediate next train. This would free up space on UI for e.g. journey duration.
