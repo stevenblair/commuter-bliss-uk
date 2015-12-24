@@ -198,6 +198,7 @@ function loadOptions() {
   var $use_sunday = $('#use_sunday');
   var $customisedTimes = $('#customise-active-times');
   var $use_HTTPS = $('#use_HTTPS');
+  var $check_time = $('#check_time');
 
   if (localStorage.getItem('home') !== null) {
     $home.val(localStorage.home);
@@ -269,6 +270,14 @@ function loadOptions() {
     localStorage.use_HTTPS = false;
     $use_HTTPS.prop("checked", false);
   }
+
+  if (localStorage.getItem('check_time') !== 'undefined' && localStorage.getItem('check_time') !== null) {
+    $check_time.prop("checked", parseLocalStorage(localStorage.check_time));
+  }
+  else {
+    localStorage.check_time = false;
+    $check_time.prop("checked", false);
+  }
 }
 
 function setSelectValue(name, value) {
@@ -299,6 +308,7 @@ function getAndStoreConfigData() {
   var afternoonStart = document.getElementById('afternoon-start');
   var afternoonEnd = document.getElementById('afternoon-end');
   var $use_HTTPS = $('#use_HTTPS');
+  var $check_time = $('#check_time');
 
   var options = {
     home: $home.val().toUpperCase(),
@@ -317,7 +327,8 @@ function getAndStoreConfigData() {
     morning_end: parseInt(morningEnd.options[morningEnd.selectedIndex].value),
     afternoon_start: parseInt(afternoonStart.options[afternoonStart.selectedIndex].value),
     afternoon_end: parseInt(afternoonEnd.options[afternoonEnd.selectedIndex].value),
-    use_HTTPS: $use_HTTPS.prop("checked")
+    use_HTTPS: $use_HTTPS.prop("checked"),
+    check_time: $check_time.prop("checked")
   };
 
   localStorage.home = options.home;
@@ -337,6 +348,7 @@ function getAndStoreConfigData() {
   localStorage.afternoon_start = options.afternoon_start;
   localStorage.afternoon_end = options.afternoon_end;
   localStorage.use_HTTPS = options.use_HTTPS;
+  localStorage.check_time = options.check_time;
 
   // console.log('Got options: ' + JSON.stringify(options));
   return options;
