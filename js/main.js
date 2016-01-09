@@ -278,6 +278,8 @@ function loadOptions() {
   else {
     localStorage.update_only_on_tap = false;
     $update_only_on_tap.prop("checked", false);
+  }
+  
   if (localStorage.getItem('check_time') !== 'undefined' && localStorage.getItem('check_time') !== null) {
     $check_time.prop("checked", parseLocalStorage(localStorage.check_time));
   }
