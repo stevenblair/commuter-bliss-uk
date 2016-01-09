@@ -336,7 +336,7 @@ function getAndStoreConfigData() {
     afternoon_start: parseInt(afternoonStart.options[afternoonStart.selectedIndex].value),
     afternoon_end: parseInt(afternoonEnd.options[afternoonEnd.selectedIndex].value),
     use_HTTPS: $use_HTTPS.prop("checked"),
-    update_only_on_tap: $update_only_on_tap.prop("checked")
+    update_only_on_tap: $update_only_on_tap.prop("checked"),
     check_time: $check_time.prop("checked")
   };
 
