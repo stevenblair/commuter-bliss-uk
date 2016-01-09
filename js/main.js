@@ -198,7 +198,11 @@ function loadOptions() {
   var $use_sunday = $('#use_sunday');
   var $customisedTimes = $('#customise-active-times');
   var $use_HTTPS = $('#use_HTTPS');
+<<<<<<< HEAD
   var $update_only_on_tap = $('#update_only_on_tap');
+=======
+  var $check_time = $('#check_time');
+>>>>>>> 9edbbb696d9ae6e9ca11b39105a9533579d8c6f0
 
   if (localStorage.getItem('home') !== null) {
     $home.val(localStorage.home);
@@ -271,12 +275,21 @@ function loadOptions() {
     $use_HTTPS.prop("checked", false);
   }
 
+<<<<<<< HEAD
   if (localStorage.getItem('update_only_on_tap') !== 'undefined' && localStorage.getItem('update_only_on_tap') !== null) {
     $update_only_on_tap.prop("checked", parseLocalStorage(localStorage.update_only_on_tap));
   }
   else {
     localStorage.update_only_on_tap = false;
     $update_only_on_tap.prop("checked", false);
+=======
+  if (localStorage.getItem('check_time') !== 'undefined' && localStorage.getItem('check_time') !== null) {
+    $check_time.prop("checked", parseLocalStorage(localStorage.check_time));
+  }
+  else {
+    localStorage.check_time = false;
+    $check_time.prop("checked", false);
+>>>>>>> 9edbbb696d9ae6e9ca11b39105a9533579d8c6f0
   }
 }
 
@@ -308,7 +321,11 @@ function getAndStoreConfigData() {
   var afternoonStart = document.getElementById('afternoon-start');
   var afternoonEnd = document.getElementById('afternoon-end');
   var $use_HTTPS = $('#use_HTTPS');
+<<<<<<< HEAD
   var $update_only_on_tap = $('#update_only_on_tap');
+=======
+  var $check_time = $('#check_time');
+>>>>>>> 9edbbb696d9ae6e9ca11b39105a9533579d8c6f0
 
   var options = {
     home: $home.val().toUpperCase(),
@@ -328,7 +345,11 @@ function getAndStoreConfigData() {
     afternoon_start: parseInt(afternoonStart.options[afternoonStart.selectedIndex].value),
     afternoon_end: parseInt(afternoonEnd.options[afternoonEnd.selectedIndex].value),
     use_HTTPS: $use_HTTPS.prop("checked"),
+<<<<<<< HEAD
     update_only_on_tap: $update_only_on_tap.prop("checked")
+=======
+    check_time: $check_time.prop("checked")
+>>>>>>> 9edbbb696d9ae6e9ca11b39105a9533579d8c6f0
   };
 
   localStorage.home = options.home;
@@ -348,7 +369,11 @@ function getAndStoreConfigData() {
   localStorage.afternoon_start = options.afternoon_start;
   localStorage.afternoon_end = options.afternoon_end;
   localStorage.use_HTTPS = options.use_HTTPS;
+<<<<<<< HEAD
   localStorage.update_only_on_tap = options.update_only_on_tap;
+=======
+  localStorage.check_time = options.check_time;
+>>>>>>> 9edbbb696d9ae6e9ca11b39105a9533579d8c6f0
 
   // console.log('Got options: ' + JSON.stringify(options));
   return options;
