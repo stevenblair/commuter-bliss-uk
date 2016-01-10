@@ -274,12 +274,14 @@ function loadOptions() {
 
   if (localStorage.getItem('update_only_on_tap') !== 'undefined' && localStorage.getItem('update_only_on_tap') !== null) {
     $update_only_on_tap.prop("checked", parseLocalStorage(localStorage.update_only_on_tap));
+
+    setUpdateOnlyOnTapVisibility();
   }
   else {
     localStorage.update_only_on_tap = false;
     $update_only_on_tap.prop("checked", false);
   }
-  
+
   if (localStorage.getItem('check_time') !== 'undefined' && localStorage.getItem('check_time') !== null) {
     $check_time.prop("checked", parseLocalStorage(localStorage.check_time));
   }
@@ -378,6 +380,18 @@ function getQueryParam(variable, defaultValue) {
   return defaultValue || false;
 }
 
+function setUpdateOnlyOnTapVisibility() {
+  var $update_only_on_tap = $('#update_only_on_tap');
+  var $day_time_customisation = $('#day_time_customisation');
+
+  if ($update_only_on_tap.attr('checked')) {
+    $day_time_customisation.hide();
+  }
+  else {
+    $day_time_customisation.show();
+  }
+}
+
 function setCustomisedDayVisibility() {
   var $customisedDays = $('#customise-active-days');
   var $days = $('#days');
@@ -406,6 +420,14 @@ function setCustomisedTimesVisibility() {
     $times.hide();
     $customisedTimesFooter.text('Default schedule active: 7-11am and 3pm-1am.');
   }
+}
+
+function createUpdateOnlyOnTapVisibilityEvents() {
+  var $update_only_on_tap = $('#update_only_on_tap');
+
+  $update_only_on_tap.on('click', function() {
+    setUpdateOnlyOnTapVisibility();
+  });
 }
 
 function createCustomisedDayEvents() {
