@@ -4,6 +4,7 @@
   loadOptions();
   createCustomisedDayEvents();
   createCustomisedTimesEvents();
+  createUpdateOnlyOnTapVisibilityEvents();
   createStationFinders();
   submitHandler();
 
