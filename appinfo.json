@@ -1,0 +1,55 @@
+{
+    "appKeys": {
+        "AFTERNOON_END": 21,
+        "AFTERNOON_START": 20,
+        "CUSTOMISED_DAYS": 9,
+        "CUSTOMISED_TIMES": 17,
+        "KEY_CURRENT_DESTINATION": 2,
+        "KEY_CURRENT_ORIGIN": 1,
+        "KEY_LAST_REQUEST_FAILED": 27,
+        "KEY_TRAIN1_DEST": 4,
+        "KEY_TRAIN1_IS_CANCELED": 8,
+        "KEY_TRAIN1_PLATFORM": 5,
+        "KEY_TRAIN1_TIME": 3,
+        "KEY_TRAIN2_DEST": 22,
+        "KEY_TRAIN2_IS_CANCELED": 24,
+        "KEY_TRAIN2_TIME": 6,
+        "KEY_TRAIN3_DEST": 23,
+        "KEY_TRAIN3_IS_CANCELED": 25,
+        "KEY_TRAIN3_TIME": 7,
+        "KEY_UPDATE": 0,
+        "KEY_UPDATE_ONLY_ON_TAP": 28,
+        "MORNING_END": 19,
+        "MORNING_START": 18,
+        "TIME_DIFF_FROM_UTC": 26,
+        "USE_FRIDAY": 14,
+        "USE_MONDAY": 10,
+        "USE_SATURDAY": 15,
+        "USE_SUNDAY": 16,
+        "USE_THURSDAY": 13,
+        "USE_TUESDAY": 11,
+        "USE_WEDNESDAY": 12
+    },
+    "capabilities": [
+        "location",
+        "configurable"
+    ],
+    "companyName": "Steven Blair",
+    "enableMultiJS": false,
+    "longName": "Commuter Bliss UK",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "Commuter Bliss UK",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
+    "uuid": "79e490a6-6ab7-44db-90a2-e8f2af2452c5",
+    "versionLabel": "1.91",
+    "watchapp": {
+        "watchface": true
+    }
+}
