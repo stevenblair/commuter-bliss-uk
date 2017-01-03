@@ -201,6 +201,7 @@ function loadOptions() {
   var $use_HTTPS = $('#use_HTTPS');
   var $update_only_on_tap = $('#update_only_on_tap');
   var $check_time = $('#check_time');
+  var $time_colour = $('#time_colour');
 
   if (localStorage.getItem('home') !== null) {
     $home.val(localStorage.home);
@@ -290,6 +291,10 @@ function loadOptions() {
     localStorage.check_time = false;
     $check_time.prop("checked", false);
   }
+
+  if (localStorage.getItem('time_colour') !== null) {
+    $time_colour.val(localStorage.time_colour);
+  }
 }
 
 function setSelectValue(name, value) {
@@ -322,6 +327,7 @@ function getAndStoreConfigData() {
   var $use_HTTPS = $('#use_HTTPS');
   var $update_only_on_tap = $('#update_only_on_tap');
   var $check_time = $('#check_time');
+  var $time_colour = $('#time_colour');
 
   var options = {
     home: $home.val().toUpperCase(),
@@ -342,7 +348,8 @@ function getAndStoreConfigData() {
     afternoon_end: parseInt(afternoonEnd.options[afternoonEnd.selectedIndex].value),
     use_HTTPS: $use_HTTPS.prop("checked"),
     update_only_on_tap: $update_only_on_tap.prop("checked"),
-    check_time: $check_time.prop("checked")
+    check_time: $check_time.prop("checked"),
+    time_colour: $time_colour.val()
   };
 
   localStorage.home = options.home;
@@ -364,6 +371,7 @@ function getAndStoreConfigData() {
   localStorage.use_HTTPS = options.use_HTTPS;
   localStorage.update_only_on_tap = options.update_only_on_tap;
   localStorage.check_time = options.check_time;
+  localStorage.time_colour = options.time_colour;
 
   // console.log('Got options: ' + JSON.stringify(options));
   return options;
