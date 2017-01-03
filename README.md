@@ -50,3 +50,5 @@ The watchface also shows the time and date in a clear and sensible way for UK us
 * Query Huxley /delays URL?
 * Only need to show departure times for immediate next train. This would free up space on UI for e.g. journey duration.
 * Display warning if last_update is excessively far in the past (due to no data connection or otherwise)
+
+Link to donate if you like this app: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XBYSZM4H48FQL
