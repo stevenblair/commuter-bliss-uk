@@ -39,7 +39,7 @@ function optionsAreValid() {
   var afternoon_start_val = parseInt(afternoonStart.options[afternoonStart.selectedIndex].value);
   var afternoon_end_val = parseInt(afternoonEnd.options[afternoonEnd.selectedIndex].value);
 
-  if (afternoon_end_val < afternoon_start_val && afternoon_end_val != 0 && afternoon_end_val != 1) {
+  if (afternoon_end_val < afternoon_start_val && afternoon_end_val != 0 && afternoon_end_val != 1 && afternoon_end_val != 2) {
     // console.log('invalid afternoon times: ' + afternoon_start_val + ', ' + afternoon_end_val);
     return false;
   }
