@@ -14,12 +14,17 @@
 function optionsAreValid() {
   var homeVal = $('#home').val().toUpperCase();
   var workVal = $('#work').val().toUpperCase();
+  var viaVal = $('#via').val().toUpperCase();
 
   if (!(homeVal in station_map)) {
     // console.log('invalid home: ' + homeVal);
     return false;
   }
   if (!(workVal in station_map)) {
+    // console.log('invalid work: ' + workVal);
+    return false;
+  }
+  if (!(viaVal in station_map) && viaVal !== '') {
     // console.log('invalid work: ' + workVal);
     return false;
   }
@@ -54,6 +59,7 @@ function checkRouteFeasibility() {
   if (optionsAreValid()) {
     var homeVal = $('#home').val().toUpperCase();
     var workVal = $('#work').val().toUpperCase();
+    var viaVal = $('#via').val().toUpperCase();
 
     $.ajax({
       type: 'GET',
@@ -179,6 +185,7 @@ function stationFinder(inputName, footerName, checkRoute) {
 function createStationFinders() {
   stationFinder('#home', '#home-footer', false);
   stationFinder('#work', '#work-footer', true);
+  stationFinder('#via', '#via-footer', false);
 }
 
 function parseLocalStorage(type) {
@@ -188,6 +195,7 @@ function parseLocalStorage(type) {
 function loadOptions() {
   var $home = $('#home');
   var $work = $('#work');
+  var $via = $('#via');
   var $useLocation = $('#use-location');
   var $customisedDays = $('#customise-active-days');
   var $use_monday = $('#use_monday');
@@ -208,6 +216,9 @@ function loadOptions() {
   }
   if (localStorage.getItem('work') !== null) {
     $work.val(localStorage.work);
+  }
+  if (localStorage.getItem('via') !== null) {
+    $via.val(localStorage.via);
   }
 
   if (localStorage.getItem('useLocation') !== null) {
@@ -310,6 +321,7 @@ function setSelectValue(name, value) {
 function getAndStoreConfigData() {
   var $home = $('#home');
   var $work = $('#work');
+  var $via = $('#via');
   var $useLocation = $('#use-location');
   var $customisedDays = $('#customise-active-days');
   var $use_monday = $('#use_monday');
@@ -332,6 +344,7 @@ function getAndStoreConfigData() {
   var options = {
     home: $home.val().toUpperCase(),
     work: $work.val().toUpperCase(),
+    via: $via.val().toUpperCase(),
     useLocation: $useLocation.prop("checked"),
     customisedDays: $customisedDays.prop("checked"),
     use_monday: $use_monday.prop("checked"),
@@ -354,6 +367,7 @@ function getAndStoreConfigData() {
 
   localStorage.home = options.home;
   localStorage.work = options.work;
+  localStorage.via = options.via;
   localStorage.useLocation = options.useLocation;
   localStorage.customisedDays = options.customisedDays;
   localStorage.use_monday = options.use_monday;
