@@ -169,7 +169,7 @@ function stationFinder(inputName, footerName, checkRoute) {
           $footer.text(list);
         }
         else {
-          $footer.text('');
+          $footer.text('   ');
         }
       }
 
@@ -178,7 +178,7 @@ function stationFinder(inputName, footerName, checkRoute) {
       }
     }
     else {
-      $footer.text('');
+      $footer.text('   ');
     }
   });
 
