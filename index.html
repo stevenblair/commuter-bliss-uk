@@ -7,8 +7,21 @@
   <link rel='stylesheet' type='text/css' href='css/style.css'>
 </head>
 <body>
-  <div class='item-container'>
+  <!-- <div class='item-container'>
     <h1 class='title'>Commuter Bliss UK - Configuration</h1>
+  </div> -->
+
+  <div class="item-container">
+    <div class="item-container-header">Mode</div>
+    <div class="item-container-content">
+      <div class="item tab-buttons" id="mode">
+        <a name="tab-mode" id="tab-fixed" class="tab-button active">Fixed location</a>
+        <!-- <a name="tab-1" class="tab-button">Update on tab</a> -->
+        <a name="tab-mode" id="tab-gps" class="tab-button">GPS location</a>
+        <a name="tab-mode" id="tab-two-stage" class="tab-button">Two-stage journey</a>
+      </div>
+    </div>
+    <div class="item-container-footer" id="mode-footer"></div>
   </div>
 
   <div class="item-container">
@@ -23,12 +36,12 @@
     <div class="item-container-footer" id="home-footer"></div>
   </div>
 
-  <div class="item-container">
+  <div class="item-container" id="via-container" style="display:none;">
     <div class="item-container-header">Via railway station</div>
     <div class="item-container-content">
       <label class="item">
         <div class="item-input-wrapper">
-          <input type="text" class="item-input" id="via" name="via" placeholder="e.g. GLC (leave empty if not using)" style="text-transform:uppercase">
+          <input type="text" class="item-input" id="via" name="via" placeholder="e.g. GLC" style="text-transform:uppercase">
         </div>
       </label>
     </div>
@@ -53,14 +66,17 @@
     </div>
   </div>
 
-  <div class="item-container">
-    <div class="item-container-content">
-      <label class="item">
-        Use GPS location
-        <input type="checkbox" class="item-toggle" name="use-location" id="use-location" checked="checked">
-      </label>
+  <div class='item-container'>
+    <div class='button-container'>
+      <input id='submitButton' type='button' class='item-button' value='SUBMIT'>
     </div>
   </div>
+  
+  <!-- <div class='item-container'>
+    <div class='button-container'>
+      <input id='cancelButton' type='button' class='item-button' value='CANCEL'>
+    </div>
+  </div> -->
 
   <div class="item-container">
     <div class="item-container-content">
@@ -225,25 +241,6 @@
 
   <div class="item-container">
     <div class="item-container-content">
-      <label class="item">
-        Use HTTPS
-        <input type="checkbox" class="item-toggle" name="use_HTTPS" id="use_HTTPS">
-      </label>
-    </div>
-    <div class="item-container-footer" id="home-footer">Use HTTPS for rail service requests and for this configuration page.</div>
-  </div>
-
-  <div class="item-container">
-    <div class="item-container-content">
-      <label class="item">
-        Check time accuracy
-        <input type="checkbox" class="item-toggle" name="check_time" id="check_time">
-      </label>
-    </div>
-  </div>
-
-  <div class="item-container">
-    <div class="item-container-content">
   	<label class="item">
       Time text colour
       <input type="text" class="item-color item-color-normal" name="time_colour" id="time_colour" value="#AA0000">
@@ -292,15 +289,31 @@
     </div>
   </div> -->
 
-  <div class='item-container'>
-    <div class='button-container'>
-      <input id='submitButton' type='button' class='item-button' value='SUBMIT'>
+  <div class="item-container">
+    <div class="item-container-content">
+      <label class="item">
+        Use HTTPS
+        <input type="checkbox" class="item-toggle" name="use_HTTPS" id="use_HTTPS">
+      </label>
+    </div>
+    <div class="item-container-footer" id="home-footer">Use HTTPS for rail service requests and for this configuration page.</div>
+  </div>
+
+  <div class="item-container">
+    <div class="item-container-content">
+      <label class="item">
+        Check time accuracy
+        <input type="checkbox" class="item-toggle" name="check_time" id="check_time">
+      </label>
     </div>
   </div>
-  
-  <div class='item-container'>
-    <div class='button-container'>
-      <input id='cancelButton' type='button' class='item-button' value='CANCEL'>
+
+  <div class="item-container">
+    <div class="item-container-content">
+      <label class="item">
+        Use GPS location (deprecated)
+        <input type="checkbox" class="item-toggle" name="use-location" id="use-location" checked="checked">
+      </label>
     </div>
   </div>
 

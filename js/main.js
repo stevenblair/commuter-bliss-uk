@@ -1,9 +1,12 @@
 // based on template: https://github.com/pebble-hacks/slate-watchface-template
 
+var $mode = 0;
+
 (function() {
   loadOptions();
   createCustomisedDayEvents();
   createCustomisedTimesEvents();
+  createModeTabEvents();
   createUpdateOnlyOnTapVisibilityEvents();
   createStationFinders();
   submitHandler();
@@ -211,6 +214,12 @@ function loadOptions() {
   var $check_time = $('#check_time');
   var $time_colour = $('#time_colour');
 
+  if (localStorage.getItem('mode') !== null) {
+    $mode = parseInt(localStorage.mode);
+
+    setTabMode();
+  }
+
   if (localStorage.getItem('home') !== null) {
     $home.val(localStorage.home);
   }
@@ -342,6 +351,7 @@ function getAndStoreConfigData() {
   var $time_colour = $('#time_colour');
 
   var options = {
+    mode: $mode,
     home: $home.val().toUpperCase(),
     work: $work.val().toUpperCase(),
     via: $via.val().toUpperCase(),
@@ -365,6 +375,7 @@ function getAndStoreConfigData() {
     time_colour: $time_colour.val()
   };
 
+  localStorage.mode = options.mode;
   localStorage.home = options.home;
   localStorage.work = options.work;
   localStorage.via = options.via;
@@ -388,6 +399,7 @@ function getAndStoreConfigData() {
   localStorage.time_colour = options.time_colour;
 
   // console.log('Got options: ' + JSON.stringify(options));
+
   return options;
 }
 
@@ -445,6 +457,32 @@ function setCustomisedTimesVisibility() {
   }
 }
 
+function setTabMode() {
+  var $viaContainer = $('#via-container');
+
+  if ($mode === 0) {
+    $viaContainer.hide();
+    $('#tab-fixed').addClass('active');
+    $('#tab-gps').removeClass('active');
+    $('#tab-two-stage').removeClass('active');
+    $('#mode-footer').text('The home and work locations are fixed. Before noon, you will be shown journeys to work; from noon you will be shown journeys home.');
+  }
+  else if ($mode === 1) {
+    $viaContainer.hide();
+    $('#tab-fixed').removeClass('active');
+    $('#tab-gps').addClass('active');
+    $('#tab-two-stage').removeClass('active');
+    $('#mode-footer').text('Your GPS location is used to find the nearest appropriate station to get you home or to work, depending on the time of day.');
+  }
+  else if ($mode === 2) {
+    $viaContainer.show();
+    $('#tab-fixed').removeClass('active');
+    $('#tab-gps').removeClass('active');
+    $('#tab-two-stage').addClass('active');
+    $('#mode-footer').text('This mode allows you to make a connection in your journey. Add the connecting station to the "Via Railway Station" field. Your GPS location will be used to determine which leg of the journey you are on, and will update the train times for your next journey.');
+  }
+}
+
 function createUpdateOnlyOnTapVisibilityEvents() {
   var $update_only_on_tap = $('#update_only_on_tap');
 
@@ -466,5 +504,28 @@ function createCustomisedTimesEvents() {
 
   $customisedTimes.on('click', function() {
     setCustomisedTimesVisibility();
+  });
+}
+
+function createModeTabEvents() {
+  var $tabFixed = $('#tab-fixed');
+  var $tabGPS = $('#tab-gps');
+  var $tabTwoStage = $('#tab-two-stage');
+
+  $tabFixed.on('click', function() {
+    $mode = 0;
+    setTabMode();
+  });
+  $tabGPS.on('click', function() {
+    $mode = 1;
+    setTabMode();
+    // console.log($tabGPS);
+    // return true;
+  });
+  $tabTwoStage.on('click', function() {
+    $mode = 2;
+    setTabMode();
+    // console.log($tabTwoStage);
+    // return true;
   });
 }
