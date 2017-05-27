@@ -59,48 +59,54 @@ function checkRouteFeasibility() {
   var $routeValidity = $('#route-validity');
   var $routeValidityContainer = $('#route-validity-container');
 
-  if (optionsAreValid()) {
-    var homeVal = $('#home').val().toUpperCase();
-    var workVal = $('#work').val().toUpperCase();
-    var viaVal = $('#via').val().toUpperCase();
-
-    $.ajax({
-      type: 'GET',
-      url: 'http://commuter-bliss-uk.apphb.com/departures/' + homeVal + '/to/' + workVal + '/1', 
-      dataType: 'json',
-      timeout: 1000,
-      success: function(data) {
-        $.ajax({
-          type: 'GET',
-          url: 'http://commuter-bliss-uk.apphb.com/departures/' + workVal + '/to/' + homeVal + '/1', 
-          dataType: 'json',
-          timeout: 1000,
-          success: function(data_return) {
-            // console.log(data);
-            // console.log(data_return);
-            var outward_possible = data.trainServices !== null && data.trainServices.length >= 1;
-            var return_possible = data_return.trainServices !== null && data_return.trainServices.length >= 1;
-            // console.log(outward_possible);
-            // console.log(return_possible);
-
-            if (outward_possible || return_possible) {
-              // console.log('valid route');
-              $routeValidity.text('Direct services are available');
-              $routeValidityContainer.show();
-            }
-            else {
-              // console.log('invalid route (now)');
-              $routeValidity.text('No direct services are available (at this time)');
-              $routeValidityContainer.show();
-            }
-          }
-        });
-      }
-    });
-  }
-  else {
+  if ($mode === 2) {
     $routeValidityContainer.hide();
     $routeValidity.text('');
+  }
+  else {
+    if (optionsAreValid()) {
+      var homeVal = $('#home').val().toUpperCase();
+      var workVal = $('#work').val().toUpperCase();
+      var viaVal = $('#via').val().toUpperCase();
+
+      $.ajax({
+        type: 'GET',
+        url: 'http://commuter-bliss-uk.apphb.com/departures/' + homeVal + '/to/' + workVal + '/1', 
+        dataType: 'json',
+        timeout: 1000,
+        success: function(data) {
+          $.ajax({
+            type: 'GET',
+            url: 'http://commuter-bliss-uk.apphb.com/departures/' + workVal + '/to/' + homeVal + '/1', 
+            dataType: 'json',
+            timeout: 1000,
+            success: function(data_return) {
+              // console.log(data);
+              // console.log(data_return);
+              var outward_possible = data.trainServices !== null && data.trainServices.length >= 1;
+              var return_possible = data_return.trainServices !== null && data_return.trainServices.length >= 1;
+              // console.log(outward_possible);
+              // console.log(return_possible);
+
+              if (outward_possible || return_possible) {
+                // console.log('valid route');
+                $routeValidity.text('Direct services are available');
+                $routeValidityContainer.show();
+              }
+              else {
+                // console.log('invalid route (now)');
+                $routeValidity.text('No direct services are available (at this time)');
+                $routeValidityContainer.show();
+              }
+            }
+          });
+        }
+      });
+    }
+    else {
+      $routeValidityContainer.hide();
+      $routeValidity.text('');
+    }
   }
 }
 
@@ -459,6 +465,7 @@ function setCustomisedTimesVisibility() {
 
 function setTabMode() {
   var $viaContainer = $('#via-container');
+  var $routeValidityContainer = $('#route-validity-container');
 
   if ($mode === 0) {
     $viaContainer.hide();
@@ -466,6 +473,9 @@ function setTabMode() {
     $('#tab-gps').removeClass('active');
     $('#tab-two-stage').removeClass('active');
     $('#mode-footer').text('The home and work locations are fixed. Before noon, you will be shown journeys to work; from noon you will be shown journeys home.');
+
+    // $routeValidityContainer.show();
+    checkRouteFeasibility();
   }
   else if ($mode === 1) {
     $viaContainer.hide();
@@ -473,6 +483,9 @@ function setTabMode() {
     $('#tab-gps').addClass('active');
     $('#tab-two-stage').removeClass('active');
     $('#mode-footer').text('Your GPS location is used to find the nearest appropriate station to get you home or to work, depending on the time of day.');
+    
+    // $routeValidityContainer.show();
+    checkRouteFeasibility();
   }
   else if ($mode === 2) {
     $viaContainer.show();
@@ -480,6 +493,8 @@ function setTabMode() {
     $('#tab-gps').removeClass('active');
     $('#tab-two-stage').addClass('active');
     $('#mode-footer').text('This mode allows you to make a connection in your journey. Add the connecting station to the "Via Railway Station" field. Your GPS location will be used to determine which leg of the journey you are on, and will update the train times for your next journey.');
+
+    $routeValidityContainer.hide();
   }
 }
 
