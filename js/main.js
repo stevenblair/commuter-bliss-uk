@@ -217,6 +217,7 @@ function loadOptions() {
   var $customisedTimes = $('#customise-active-times');
   var $use_HTTPS = $('#use_HTTPS');
   var $update_only_on_tap = $('#update_only_on_tap');
+  var $will_walk = $('#will-walk');
   var $check_time = $('#check_time');
   var $time_colour = $('#time_colour');
 
@@ -310,6 +311,16 @@ function loadOptions() {
     $update_only_on_tap.prop("checked", false);
   }
 
+  if (localStorage.getItem('will_walk') !== 'undefined' && localStorage.getItem('will_walk') !== null) {
+    $will_walk.prop("checked", parseLocalStorage(localStorage.will_walk));
+
+    setUpdateOnlyOnTapVisibility();
+  }
+  else {
+    localStorage.will_walk = false;
+    $will_walk.prop("checked", false);
+  }
+
   if (localStorage.getItem('check_time') !== 'undefined' && localStorage.getItem('check_time') !== null) {
     $check_time.prop("checked", parseLocalStorage(localStorage.check_time));
   }
@@ -353,6 +364,7 @@ function getAndStoreConfigData() {
   var afternoonEnd = document.getElementById('afternoon-end');
   var $use_HTTPS = $('#use_HTTPS');
   var $update_only_on_tap = $('#update_only_on_tap');
+  var $will_walk = $('#will-walk');
   var $check_time = $('#check_time');
   var $time_colour = $('#time_colour');
 
@@ -377,6 +389,7 @@ function getAndStoreConfigData() {
     afternoon_end: parseInt(afternoonEnd.options[afternoonEnd.selectedIndex].value),
     use_HTTPS: $use_HTTPS.prop("checked"),
     update_only_on_tap: $update_only_on_tap.prop("checked"),
+    will_walk: $will_walk.prop("checked"),
     check_time: $check_time.prop("checked"),
     time_colour: $time_colour.val()
   };
@@ -401,6 +414,7 @@ function getAndStoreConfigData() {
   localStorage.afternoon_end = options.afternoon_end;
   localStorage.use_HTTPS = options.use_HTTPS;
   localStorage.update_only_on_tap = options.update_only_on_tap;
+  localStorage.will_walk = options.will_walk;
   localStorage.check_time = options.check_time;
   localStorage.time_colour = options.time_colour;
 
