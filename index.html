@@ -81,11 +81,11 @@
     </div>
   </div>
   
-  <!-- <div class='item-container'>
+  <div class='item-container'>
     <div class='button-container'>
       <input id='cancelButton' type='button' class='item-button' value='CANCEL'>
     </div>
-  </div> -->
+  </div>
 
   <div class="item-container">
     <div class="item-container-content">
@@ -94,7 +94,17 @@
         <input type="checkbox" class="item-toggle" name="update_only_on_tap" id="update_only_on_tap">
       </label>
     </div>
-    <div class="item-container-footer" id="home-footer">Disables periodic updates to improve battery life. "Tap" or shake the watch to manually trigger an update of train times.</div>
+    <div class="item-container-footer" id="tap-footer">Disables periodic updates to improve battery life. "Tap" or shake the watch to manually trigger an update of train times.</div>
+  </div>
+
+  <div class="item-container" id="will-walk-container">
+    <div class="item-container-content">
+      <label class="item">
+        Will walk to stations
+        <input type="checkbox" class="item-toggle" name="will-walk" id="will-walk">
+      </label>
+    </div>
+    <div class="item-container-footer" id="will-walk-footer">If enabled, trains from all nearby stations will be shown. This may involve a bit of walking, but should be the fastest way home (or to work). If disabled, only trains from the nearest station, which has valid journeys to home or work, will be shown.</div>
   </div>
 
   <div id="day_time_customisation">
@@ -305,7 +315,7 @@
         <input type="checkbox" class="item-toggle" name="use_HTTPS" id="use_HTTPS">
       </label>
     </div>
-    <div class="item-container-footer" id="home-footer">Use HTTPS for rail service requests and for this configuration page.</div>
+    <div class="item-container-footer" id="https-footer">Use HTTPS for rail service requests and for this configuration page.</div>
   </div>
 
   <div class="item-container">
