@@ -2,6 +2,8 @@
 
 A Pebble watchface for UK rail commuters.
 
+Presentation overview: https://slides.com/stevenblair/commuter-bliss-uk
+
 **[Pebble Appstore link](https://apps.getpebble.com/applications/55de44a8c46b80387c000070)**
 
 <img src="https://assets.getpebble.com/api/file/ayMN9FZHR0GdHwjKV0kQ/convert?cache=true&fit=crop&w=144&h=168">
