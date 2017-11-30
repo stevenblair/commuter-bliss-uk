@@ -6,32 +6,33 @@ Presentation overview: https://slides.com/stevenblair/commuter-bliss-uk
 
 **[Pebble Appstore link](https://apps.getpebble.com/applications/55de44a8c46b80387c000070)**
 
-<img src="https://assets.getpebble.com/api/file/ayMN9FZHR0GdHwjKV0kQ/convert?cache=true&fit=crop&w=144&h=168">
-<img src="https://assets.getpebble.com/api/file/tOferOmpSle32IXMezvX/convert?cache=true&fit=crop&w=144&h=168">
-<img src="https://assets.getpebble.com/api/file/eblbU9hQYiyK0fXHXO1w/convert?cache=true&fit=crop&w=144&h=168">
-<img src="https://assets.getpebble.com/api/file/dMGHUVZtQPSANVm83THr/convert?cache=true&fit=crop&w=144&h=168">
-<img src="https://assets.getpebble.com/api/file/NRn894ATQbuHOoN4Be7j/convert?cache=true&fit=crop&w=144&h=168">
+<img src="https://assets.getpebble.com/api/file/XTzZmcpSfem1wjFUOGrf/convert?cache=true&fit=crop&w=144&h=168">
+<img src="https://assets.getpebble.com/api/file/IAF3j4F4SLW81U1CmL6M/convert?cache=true&fit=crop&w=144&h=168">
+<img src="https://assets.getpebble.com/api/file/CIeZBo6NR3KUwZVUBTR6/convert?cache=true&fit=crop&w=144&h=168">
+<img src="https://assets.getpebble.com/api/file/1QlkkaTNT4CuU84mBcJA/convert?cache=true&fit=crop&w=144&h=168">
+<!--<img src="https://assets.getpebble.com/api/file/NRn894ATQbuHOoN4Be7j/convert?cache=true&fit=crop&w=144&h=168">-->
 
 # Features
 
-Displays the next three trains for your daily commute to and from work. The immediate next train is shown in detail in bold. It is designed to require minimal effort to show important information a rail commuter needs on a daily basis.
+Displays the next three trains for your daily commute to and from work. It is designed to require minimal effort to show important information that a rail commuter needs on a daily basis.
 
-You can specify your normal home and work railway stations using the configuration page. Only direct rail services are supported - routes with changes won't work.
+You can specify your normal home and work railway stations using the configuration page. Only direct rail services, and routes with one change, are supported.
 
-Rail service data are obtained in real-time using the Huxley web service, which accesses National Rail Enquiries data. The watchface requests your current location from your phone and determines the closest railway station. If you are near your configured home station, you will be shown routes to your work station; otherwise you will be shown routes home. This means that even if you happen to travel away from your normal work station, you may still be presented with a reasonable rail service to get home.
+Rail service data are obtained in real-time using the Huxley web service, which accesses National Rail Enquiries data. In GPS mode, the watchface requests your current location from your phone and determines the closest railway station. If you are near your configured home station, you will be shown routes to your work station; otherwise you will be shown routes home. This means that even if you happen to travel away from your normal work station, you may still be presented with a reasonable rail service to get home.
 
 Alternatively, if location is disabled or unavailable, your journeys are still planned using the time of day and your predefined stations.
 
-Updates are requested periodically, but can be requested at any time by "tapping" (shaking) the watch. When the next train is due to arrive or is slightly late, updates are triggered more frequently. Train times are only fetched during likely commuting times.
+Updates are requested periodically, but can be requested at any time by "tapping" (shaking) the watch. When the next train is due to arrive or is slightly late, updates are triggered more frequently. Train times are only fetched during likely commuting times (but this can be customised).
 
-Where specified in the data, the estimated time of departure (ETD) is displayed. Otherwise, the scheduled time of departure (STD) is shown. This means that the watchface can adapt to real-time changes to the schedule or cancellations.
+Where specified in the data, the estimated time of departure (ETD) is displayed. Otherwise, the scheduled time of departure (STD) is shown.
 
 The watchface also shows the time and date in a clear and sensible way for UK users.
 
 ## Details
 
 * By default, train times are only shown on the watchface between 7am-11am and 3pm-1am, every day. This schedule can be customised from the configuration page.
-* Your present location can be used to dynamically determine possible routes home, based the your nearest railway station. This mode can be disabled. In any case, your exact location is not shared outside of the phone app.
+* There are three modes: fixed route, GPS-based route, and two-stage journey.
+* Your present location can be used to dynamically determine possible routes home, based the your nearest railway station. This mode can be disabled. ~~In any case, your exact location is not shared outside of the phone app.~~If enabled, your location will be be sent to the external server which processes the list of train services - this request is always sent using SSL.
 * If location is disabled or unavailable, your normal home-to-work journeys will be shown in the morning; work-to-home routes will be shown after midday.
 * By default, train routes are refreshed every 15 minutes. At the time the next train is due to depart (i.e. has 0 minutes left), an update is requested. If a train is delayed (shown by e.g. "-2 min"), an update is requested every minute.
 * The platform number, if available, is shown in brackets on the bottom line.
