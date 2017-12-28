@@ -124,11 +124,11 @@ function submitHandler() {
     }
   });
 
-  var $cancelButton = $('#cancelButton');
-  $cancelButton.on('click', function() {
-    // console.log('cancel');
-    document.location = 'pebblejs://close';
-  });
+  // var $cancelButton = $('#cancelButton');
+  // $cancelButton.on('click', function() {
+  //   // console.log('cancel');
+  //   document.location = 'pebblejs://close';
+  // });
 }
 
 function stationFinder(inputName, footerName, checkRoute) {
@@ -218,6 +218,7 @@ function loadOptions() {
   var $use_HTTPS = $('#use_HTTPS');
   var $update_only_on_tap = $('#update_only_on_tap');
   var $will_walk = $('#will-walk');
+  var $walk_radius = $('#walk-radius');
   var $check_time = $('#check_time');
   var $time_colour = $('#time_colour');
 
@@ -332,6 +333,17 @@ function loadOptions() {
   if (localStorage.getItem('time_colour') !== null) {
     $time_colour.val(localStorage.time_colour);
   }
+
+  if (localStorage.getItem('walk_radius') !== null) {
+    $walk_radius.val(localStorage.walk_radius);
+  }
+  else {
+    $walk_radius.val(15);
+  }
+  var $walk_radius_textbox = $('#walk-radius-textbox');
+  // console.log($walk_radius.val());
+  // console.log($walk_radius_textbox.val());
+  $walk_radius_textbox.prop('readonly', false).val($walk_radius.val()).prop('readonly', true);
 }
 
 function setSelectValue(name, value) {
@@ -365,6 +377,7 @@ function getAndStoreConfigData() {
   var $use_HTTPS = $('#use_HTTPS');
   var $update_only_on_tap = $('#update_only_on_tap');
   var $will_walk = $('#will-walk');
+  var $walk_radius = $('#walk-radius');
   var $check_time = $('#check_time');
   var $time_colour = $('#time_colour');
 
@@ -390,6 +403,7 @@ function getAndStoreConfigData() {
     use_HTTPS: $use_HTTPS.prop("checked"),
     update_only_on_tap: $update_only_on_tap.prop("checked"),
     will_walk: $will_walk.prop("checked"),
+    walk_radius: $walk_radius.val(),
     check_time: $check_time.prop("checked"),
     time_colour: $time_colour.val()
   };
@@ -415,6 +429,7 @@ function getAndStoreConfigData() {
   localStorage.use_HTTPS = options.use_HTTPS;
   localStorage.update_only_on_tap = options.update_only_on_tap;
   localStorage.will_walk = options.will_walk;
+  localStorage.walk_radius = options.walk_radius;
   localStorage.check_time = options.check_time;
   localStorage.time_colour = options.time_colour;
 
@@ -481,6 +496,8 @@ function setTabMode() {
   var $viaContainer = $('#via-container');
   var $routeValidityContainer = $('#route-validity-container');
   var $willWalkContainer = $('#will-walk-container');
+  var $walkRadiusContainer = $('#walk-radius-container');
+
 
   if ($mode === 0) {
     $viaContainer.hide();
@@ -490,6 +507,7 @@ function setTabMode() {
     $('#mode-footer').text('The home and work locations are fixed. Before noon, you will be shown journeys to work; from noon you will be shown journeys home.');
 
     $willWalkContainer.hide();
+    $walkRadiusContainer.hide();
 
     // $routeValidityContainer.show();
     checkRouteFeasibility();
@@ -502,6 +520,7 @@ function setTabMode() {
     $('#mode-footer').text('Your GPS location is used to find the nearest appropriate station to get you home or to work, depending on the time of day.');
     
     $willWalkContainer.show();
+    $walkRadiusContainer.show();
 
     // $routeValidityContainer.show();
     checkRouteFeasibility();
@@ -514,6 +533,7 @@ function setTabMode() {
     $('#mode-footer').text('This mode allows you to make a connection in your journey. Add the connecting station to the "Via" railway station field. Your GPS location will be used to automatically determine which leg of the journey you are on, and will update the train times for your next journey. Note that this does not do any planning for the second leg until you are en-route to the connecting station.');
 
     $willWalkContainer.hide();
+    $walkRadiusContainer.hide();
 
     $routeValidityContainer.hide();
   }

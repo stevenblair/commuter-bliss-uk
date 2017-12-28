@@ -81,11 +81,11 @@
     </div>
   </div>
   
-  <div class='item-container'>
+  <!-- <div class='item-container'>
     <div class='button-container'>
       <input id='cancelButton' type='button' class='item-button' value='CANCEL'>
     </div>
-  </div>
+  </div> -->
 
   <div class="item-container">
     <div class="item-container-content">
@@ -105,6 +105,19 @@
       </label>
     </div>
     <div class="item-container-footer" id="will-walk-footer">If enabled, trains from all nearby stations will be shown. This may involve a bit of walking, but should be the fastest way home (or to work). If disabled, only trains from the nearest station, which has valid journeys to home or work, will be shown.</div>
+  </div>
+
+  <div class="item-container" id="walk-radius-container" style="display:none;">
+    <div class="item-container-header">Walk radius (minutes)</div>
+    <div class="item-container-content">
+      <label class="item">
+        <input type="range" class="item-slider" name="walk-radius" id="walk-radius" value="50" min="0" max="120">
+        <div class="item-input-wrapper item-slider-text">
+          <input type="text" class="item-input" name="walk-radius" id="walk-radius-textbox" value="50" readonly>
+        </div>
+      </label>
+    </div>
+    <div class="item-container-footer" id="walk-radius-footer">Defines the maximum (estimated) walking distance to stations that is allowed.</div>
   </div>
 
   <div id="day_time_customisation">
